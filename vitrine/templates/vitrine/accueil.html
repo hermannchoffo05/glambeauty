@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlamBeauty — Cosmétiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vitrine/style.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-spa"></i> GlamBeauty
+        </div>
+        <ul>
+            <li><a href="#accueil"><i class="fa-solid fa-house"></i> Accueil</a></li>
+            <li><a href="#produits"><i class="fa-solid fa-box-open"></i> Produits</a></li>
+            <li><a href="#services"><i class="fa-solid fa-star"></i> Services</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero" id="accueil">
+        <h1><i class="fa-solid fa-spa"></i> GlamBeauty</h1>
+        <p>Votre beauté, notre passion — Produits cosmétiques premium à Yaoundé</p>
+        <a href="#produits" class="btn">
+            <i class="fa-solid fa-arrow-down"></i> Découvrir nos produits
+        </a>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-item">
+            <i class="fa-solid fa-box"></i>
+            <h3>50+</h3><p>Produits disponibles</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-users"></i>
+            <h3>1000+</h3><p>Clients satisfaits</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-truck"></i>
+            <h3>24h</h3><p>Livraison rapide</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-award"></i>
+            <h3>100%</h3><p>Produits naturels</p>
+        </div>
+    </div>
+
+    <!-- PRODUITS -->
+    <div class="section" id="produits">
+        <div class="section-title">
+            <i class="fa-solid fa-box-open"></i>
+            <h2>Nos Produits</h2>
+            <p>Découvrez notre gamme de cosmétiques premium</p>
+            <div class="ligne"></div>
+        </div>
+        <div class="grille">
+            {% for produit in produits %}
+            <div class="carte">
+                {% if produit.image %}
+                    <img src="{{ produit.image.url }}" alt="{{ produit.nom }}">
+                {% else %}
+                    <div class="carte-image">💄</div>
+                {% endif %}
+                <div class="carte-body">
+                    <div>
+                        <h3>{{ produit.nom }}</h3>
+                        <p>{{ produit.description }}</p>
+                    </div>
+                    <div class="carte-footer">
+                        <span class="prix">{{ produit.prix }} FCFA</span>
+                        <button class="btn-acheter">
+                            <i class="fa-solid fa-cart-plus"></i> Acheter
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align:center;color:#999;grid-column:1/-1;">
+                <i class="fa-solid fa-box-open"></i> Aucun produit pour l'instant.
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="services-bg" id="services">
+        <div class="section-title">
+            <i class="fa-solid fa-star"></i>
+            <h2>Nos Services</h2>
+            <p>Des services professionnels à votre disposition</p>
+            <div class="ligne"></div>
+        </div>
+        <div class="services-grille">
+            {% for service in services %}
+            <div class="service-carte">
+                <div class="service-icone">
+                    <i class="fa-solid {{ service.icone }}"></i>
+                </div>
+                <h3>{{ service.titre }}</h3>
+                <p>{{ service.description }}</p>
+            </div>
+            {% empty %}
+            <p style="text-align:center;color:#999;">Aucun service pour l'instant.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- POURQUOI NOUS -->
+    <div class="section">
+        <div class="section-title">
+            <i class="fa-solid fa-heart"></i>
+            <h2>Pourquoi nous choisir ?</h2>
+            <p>Ce qui nous rend uniques</p>
+            <div class="ligne"></div>
+        </div>
+        <div class="avantages">
+            <div class="avantage-item">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>100% Naturel</h4>
+                <p>Tous nos produits sont fabriqués à base d'ingrédients naturels</p>
+            </div>
+            <div class="avantage-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4>Certifiés</h4>
+                <p>Produits certifiés et testés dermatologiquement</p>
+            </div>
+            <div class="avantage-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h4>Livraison rapide</h4>
+                <p>Livraison en 24h partout à Yaoundé</p>
+            </div>
+            <div class="avantage-item">
+                <i class="fa-solid fa-headset"></i>
+                <h4>Support 24/7</h4>
+                <p>Notre équipe est disponible pour vous conseiller</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-bg" id="contact">
+        <div class="contact-inner">
+            <h2>Contactez-nous</h2>
+            <p>Notre équipe est à votre disposition</p>
+            <div class="contact-grille">
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Adresse</h4>
+                    <p>Yaoundé, Cameroun</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <h4>Téléphone</h4>
+                    <p>+237 652 70 51 37</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>glambeauty@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <h4>Horaires</h4>
+                    <p>Lun–Sam : 8h–18h</p>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE -->
+            <div class="formulaire-contact">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alerte-succes">
+                        <i class="fa-solid fa-circle-check"></i> {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <form method="POST" action="#contact">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-user"></i> Votre nom</label>
+                            <input type="text" name="nom" placeholder="Hermann Choffo" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-envelope"></i> Votre email</label>
+                            <input type="email" name="email" placeholder="vous@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-tag"></i> Sujet</label>
+                        <input type="text" name="sujet" placeholder="Demande d'information..." required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-message"></i> Message</label>
+                        <textarea name="message" rows="5" placeholder="Écrivez votre message ici..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-envoyer">
+                        <i class="fa-solid fa-paper-plane"></i> Envoyer le message
+                    </button>
+                </form>
+            </div>
+
+            <div class="reseaux">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 <span>GlamBeauty</span> — Tous droits réservés |
+        
+    </footer>
+<script>
+    /* Smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const cible = document.querySelector(this.getAttribute('href'));
+            if (cible) cible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    /* Scroll reveal */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 120);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.carte, .service-carte, .avantage-item, .contact-item, .stat-item').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+
+    /* Boutons Acheter → WhatsApp */
+    document.querySelectorAll('.btn-acheter').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const produit = this.closest('.carte').querySelector('h3').textContent;
+            const msg = encodeURIComponent(`Bonjour, je suis intéressé(e) par : ${produit}`);
+            window.open(`https://wa.me/237652705137?text=${msg}`, '_blank');
+        });
+    });
+</script>
+
+</body>
+</html>
